@@ -17,6 +17,7 @@ gulp.task('sprite', () =>
       cssName: 'sprite.css'
     }))
     .pipe(gulp.dest('dist/images'))
+    .pipe(gulp.dest('.tmp/images'))
     .pipe($.size({title: 'images'}))
 );
 
@@ -74,7 +75,6 @@ gulp.task('scripts', () =>
     ])
       .pipe($.newer('.tmp/js'))
       .pipe($.sourcemaps.init())
-      //.pipe(gulp.dest('.tmp/js'))
       .pipe($.concat('main.js'))
       // Output files
       .pipe($.size({title: 'js'}))
