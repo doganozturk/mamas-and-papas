@@ -1,0 +1,24 @@
+.carousel {
+  margin-top: 22px;
+
+  &__content {
+    img {
+      width: 312px;
+      height: 250px;
+    }
+  }
+
+  // ===========
+  //  DESKTOP STYLES
+  // ========
+  @media (min-width: $screen-desktop) {
+    margin-top: 30px;
+
+    &__content {
+      img {
+        width: 940px;
+        height: 373px;
+      }
+    }
+  }
+}

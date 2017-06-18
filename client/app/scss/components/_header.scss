@@ -36,8 +36,84 @@
       &--with-separator {
         &:before {
           content: '|';
-          margin-right: 5px;
+          margin-right: 7px;
           color: $header-user-menu-link-color;
+        }
+
+        &:nth-child(3),
+        &:nth-child(4) {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &__navigation-desktop {
+    display: none;
+  }
+
+  // ===========
+  //  DESKTOP STYLES
+  // ========
+  @media (min-width: $screen-desktop) {
+    position: relative;
+
+    &__navigation {
+      display: none;
+    }
+
+    &__your-bag {
+      display: none;
+    }
+
+    &__user-menu {
+      position: absolute;
+      top: 0;
+      right: 16px;
+
+      &__link {
+        &--with-separator {
+          &:nth-child(2) {
+            display: none;
+          }
+
+          &:nth-child(3),
+          &:nth-child(4) {
+            display: inline-block;
+          }
+        }
+      }
+    }
+
+    &__navigation-desktop {
+      @import url('https://fonts.googleapis.com/css?family=Ropa+Sans');
+
+      display: block;
+      margin-top: 32px;
+      font-family: $header-desktop-navigation-link-font-family;
+      font-size: 17px;
+      text-align: center;
+      color: $header-desktop-navigation-link-color;
+
+      ul {
+        padding-left: 0;
+        margin: 0;
+
+        a {
+          color: inherit;
+
+          &:visited {
+            color: inherit;
+          }
+
+          &:hover {
+            color: lighten($header-desktop-navigation-link-color, 20%);
+          }
+
+          li {
+            display: inline-block;
+            margin: 0 15px;
+          }
         }
       }
     }

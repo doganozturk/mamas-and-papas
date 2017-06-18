@@ -1,9 +1,92 @@
 .search {
   form {
+    position: relative;
     margin: 0 6px;
-    
+  }
+
+  &__input {
+    margin-top: 35px;
+    padding-left: 10px;
+    border-bottom: 1px solid $search-input-color;
+
+    input {
+      width: 80%;
+      margin-bottom: 6px;
+      font-size: 15px;
+      font-style: italic;
+    }
+  }
+
+  &__submit {
+    @include sprite($search-icon);
+
+    position: absolute;
+    top: 5px;
+    right: 8px;
+    cursor: pointer;
+  }
+
+  &__suggestions {
+    display: none;
+  }
+
+  // ===========
+  //  DESKTOP STYLES
+  // ========
+  @media (min-width: $screen-desktop) {
     &__input {
-      border-bottom: 1px solid $search-input-color;
+      width: 300px;
+      margin: 30px auto 0 auto;
+    }
+
+    &__submit {
+      right: 320px;
+    }
+
+    &__suggestions {
+      display: none;
+      position: absolute;
+      width: 276px;
+      left: 315px;
+      height: 65px;
+      padding: 39px 16px 34px 16px;
+      margin: 0 auto;
+      overflow: scroll;
+      z-index: $dropdown-menu;
+      border: 1px solid $search-suggestions-border-color;
+      border-top: none;
+      color: $search-suggestions-color;
+      background-color: $search-suggestions-background-color;
+
+      &__loading {
+        display: none;
+        position: absolute;
+        top: 30px;
+        width: 276px;
+        background-color: $loader-background-color;
+        opacity: 0.8;
+      }
+
+      ul {
+        padding-left: 0;
+        margin: 0;
+        list-style: none;
+
+        li {
+          padding: 5px 0;
+          font-family: $search-suggestions-item-font-family;
+          font-size: 12px;
+          font-weight: 600;
+
+          &:first-child {
+            padding-top: 0;
+          }
+
+          &:last-child {
+            padding-bottom: 0;
+          }
+        }
+      }
     }
   }
 }

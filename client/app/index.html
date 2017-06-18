@@ -14,56 +14,80 @@
   </head>
   <body>
 
-    <div class="home container">
+    <div class="home container-fluid">
 
       <section class="header row">
         <div class="col-xs-2">
-          <div class="box">
-            <div class="header__navigation"></div>
-          </div> 
+          <div class="header__navigation"></div>
         </div>
 
         <div class="col-xs-8">
-          <div class="box">
+          <a href="#">
             <div class="header__logo"></div>
-          </div>
+          </a>
         </div>
 
         <div class="col-xs-2">
-          <div class="box">
+          <a href="#">
             <div class="header__your-bag"></div>
-          </div>
+          </a>
         </div>
         
         <div class="col-xs-12">
-          <div class="box">
-            <div class="header__user-menu">
-              <a href="#" class="header__user-menu__link">Sign in/Register</a>
-              <a href="#" class="header__user-menu__link header__user-menu__link--with-separator">Stores</a>
-            </div>
+          <div class="header__user-menu">
+            <a href="#" class="header__user-menu__link">Sign in/Register</a>
+            <a href="#" class="header__user-menu__link header__user-menu__link--with-separator">Stores</a>
+            <a href="#" class="header__user-menu__link header__user-menu__link--with-separator">Stores/Stockists</a>
+            <a href="#" class="header__user-menu__link header__user-menu__link--with-separator">Your Bag <strong>(2)</strong></a>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="header__navigation-desktop">
+            <ul>
+              <a href="#"><li>CLOTHING</li></a>
+              <a href="#"><li>TRAVEL</li></a>
+              <a href="#"><li>NURSERY FURNITURE</li></a>
+              <a href="#"><li>NURSERY INTERIORS</li></a>
+              <a href="#"><li>PLATIME</li></a>
+              <a href="#"><li>BATHTIME</li></a>
+              <a href="#"><li>FEEDING</li></a>
+              <a href="#"><li>GIFTS</li></a>
+            </ul>
           </div>
         </div>
       </section>
 
       <section class="search row">
         <div class="col-xs-12">
-          <div class="box">
-            <form action="#">
-              <div class="search__input">
-                <input type="text" placeholder="Hello, I’m looking for…">
+          <form action="#">
+            <div class="search__input">
+              <input id="searchInput" type="text" placeholder="Hello, I’m looking for…">
+            </div>
+            <div class="search__submit">
+              <input id="searchSubmit" type="submit" value=""></input>
+            </div>
+            <div id="searchSuggestions" class="search__suggestions">
+              <div class="search__suggestions__loading">
+                <div class="sp-circle"></div>
               </div>
-              <div class="search__button">
-                <button></button>
-              </div>
-              <div class="search__suggestions">
-                <ul></ul>
-              </div>
-            </form>
-          </div>
+              <ul></ul>
+            </div>
+          </form>
         </div>
       </section>
 
-      <section class="carousel row"></section>
+      <section class="carousel row">
+        <div class="col-xs-12">
+          <div id="carouselContent" class="carousel__content">
+            <img src="http://lorempixel.com/940/375/fashion?dress">
+            <img src="http://lorempixel.com/940/375/fashion?skirt">
+            <img src="http://lorempixel.com/940/375/fashion?trousers">
+            <img src="http://lorempixel.com/940/375/fashion?tshirt">
+            <img src="http://lorempixel.com/940/375/fashion?shirt">
+          </div>
+        </div>
+      </section>
 
     </div>
 

@@ -1,0 +1,44 @@
+// ===========
+//  DEVICE-WIDTHS
+// ========
+$screen-desktop: 960px;
+
+// ===========
+//  LOADING
+// ========
+.sp-circle {
+  width: 32px;
+	height: 32px;
+	clear: both;
+	margin: 20px auto;
+	border: 4px rgba(#000,0.25) solid;
+	border-top: 4px rgba(#000,1) solid;
+	border-radius: 50%;
+	animation: spCircRot .6s infinite linear;
+}
+@keyframes spCircRot {
+	from { transform: rotate(0deg); }
+	to { transform: rotate(359deg); }
+}
+
+// ===========
+//  BASE STYLES
+// ========
+body {
+  width: auto;
+
+  input {
+    border: none;
+    background-image: none;
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  // ===========
+  //  DESKTOP STYLES
+  // ========
+  @media (min-width: $screen-desktop) {
+    width: 960px;
+    margin: 0 auto;
+  }
+}
