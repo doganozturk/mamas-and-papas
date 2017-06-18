@@ -6,10 +6,11 @@
 // ===========
 //  UTILS
 // ========
-@import 'utils/_typography.scss';
-@import 'utils/_colors.scss';
-@import 'utils/_shadows.scss';
-@import 'utils/_transitions.scss';
+@import './utils/_sprite.scss';
+@import './utils/_typography.scss';
+@import './utils/_colors.scss';
+@import './utils/_shadows.scss';
+@import './utils/_transitions.scss';
 
 // ===========
 //  BASE
@@ -20,8 +21,3 @@
 //  PAGES
 // ========
 @import './pages/_home.scss';
-
-// ===========
-//  COMPONENTS
-// ========
-

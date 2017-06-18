@@ -1,0 +1,9 @@
+.search {
+  form {
+    margin: 0 6px;
+    
+    &__input {
+      border-bottom: 1px solid $search-input-color;
+    }
+  }
+}

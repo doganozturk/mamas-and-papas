@@ -1,3 +1,10 @@
-body {
-  background-color: red;
+.home {
+
+  padding: 4px;
+
+  // ===========
+  //  COMPONENTS
+  // ========
+  @import "../components/_header.scss";
+  @import "../components/_search.scss";
 }

@@ -1,0 +1,45 @@
+.header {
+  &__navigation {
+    @include sprite($navigation);
+
+    margin-top: 31px;
+    margin-left: 6px;
+  }
+
+  &__logo {
+    @include sprite($logo);
+
+    margin: 16px auto 0 auto;
+  }
+
+  &__your-bag {
+    @include sprite($your-bag);
+
+    margin: 25px auto 0 -10px;
+  }
+
+  &__user-menu {
+    margin-top: 16px;
+    text-align: center;
+
+    &__link {
+      font-family: $header-user-menu-link-font-family;
+      font-size: 12px;
+      font-weight: 400;
+      text-decoration-line: none;
+      color: $header-user-menu-link-color;
+
+      &:hover {
+        color: lighten($header-user-menu-link-color, 20%);
+      }
+
+      &--with-separator {
+        &:before {
+          content: '|';
+          margin-right: 5px;
+          color: $header-user-menu-link-color;
+        }
+      }
+    }
+  }
+}
