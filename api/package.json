@@ -5,7 +5,10 @@
   "author": "Doğan Öztürk",
   "scripts": {
     "dev": "./node_modules/nodemon/bin/nodemon.js app.js",
-    "dist": "node app.js"
+    "dist": "npm run index-delete && npm run index && npm run indices && node app.js",
+    "index": "node ./elasticsearch/index.js",
+    "index-delete": "curl -XDELETE 'http://localhost:9200/_all'",
+    "indices": "node ./elasticsearch/indices.js"
   },
   "dependencies": {
     "elasticsearch": "13.1.1",

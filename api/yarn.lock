@@ -311,7 +311,7 @@ ecc-jsbn@~0.1.1:
   dependencies:
     jsbn "~0.1.0"
 
-elasticsearch@^13.1.1:
+elasticsearch@13.1.1:
   version "13.1.1"
   resolved "https://registry.yarnpkg.com/elasticsearch/-/elasticsearch-13.1.1.tgz#83dbb5cf76ecc9bdd3ffceb5ce74d5fc7d23e798"
   dependencies:
