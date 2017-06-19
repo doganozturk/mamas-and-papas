@@ -3,6 +3,14 @@ var app  = app || {};
 app.init = app.init || {};
 app.utils = app.utils || {};
 
+// App config
+app.config = {
+  apiUrl: 'http://localhost:3002',
+  endpoints: {
+    search: '/search/quick'
+  }
+};
+
 // Check if user is on a mobile device
 app.utils.isMobile = function() {
   return $(window).width() < 960;
@@ -95,8 +103,7 @@ app.init.search = function () {
       var keyword = $(this).val();
 
       if (keyword.length > 2) {
-        // This will be like /search/full?keyword=[KEYWORD HERE]
-        var url = app.utils.getBaseUrl() + '/mock/products.json';
+        var url = app.config.apiUrl + app.config.endpoints.search + '?keyword=' + keyword;
         var searchRequest = $.get(url);
 
         $.when(searchRequest)
@@ -105,7 +112,7 @@ app.init.search = function () {
 
             var data = result;
 
-            if (data)
+            if (data.length)
               fillList(data);
             else
               emptyList();

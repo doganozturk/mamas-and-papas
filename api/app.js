@@ -1,5 +1,6 @@
 const restify = require('restify');
-const searchAll = require('./elasticsearch/searchAll');
+const search = require('./elasticsearch/search');
+const _ = { get: require('lodash.get') };
 const data = require('./data/products.json');
 
 // Server
@@ -9,32 +10,60 @@ const server = restify.createServer({
 });
 
 // Middleware
+server.use(restify.CORS());
 server.use(restify.acceptParser(server.acceptable));
 server.use(restify.queryParser());
 
 // Search endpoint
 server.get("/search/quick", (req, res, next) => {
+  const keyword = _.get(req, 'query.keyword');
+
   let body = {
-    size: 20,
-    from: 0,
     query: {
-      match_all: {}
+      bool: {
+        should: [
+          {
+            term: {
+              isInStock: {
+                boost: 100,
+                value: true
+              }
+            }
+          },
+          {
+            multi_match: {
+              query: keyword,
+              fields: ['sku', 'ediRef'],
+              type: 'phrase'
+            }
+          },
+          {
+            multi_match: {
+              query: keyword,
+              fields: ['name', 'description'],
+              fuzziness: 0.5
+            }
+          }
+        ]
+      }
     }
   };
 
-  searchAll('library', body)
+  search('library', body)
     .then(results => {
       console.log(`found ${results.hits.total} items in ${results.took}ms`);
       console.log(`returned product titles:`);
 
       results.hits.hits.forEach(
         (hit, index) => console.log(
-          `\t${body.from + ++index} - ${hit._source.name}`
+          `\t${body.from + ++index} - ${hit._source.name} - ${hit._source.isInStock}`
         )
       );
 
+      const response = results.hits.hits.map(item => item._source);
+
       res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
-      res.end(JSON.stringify(results.hits.hits));
+      res.end(JSON.stringify(response));
 
       return next();
     })

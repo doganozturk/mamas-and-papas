@@ -1,8 +1,12 @@
 {
-  "name": "api",
-  "version": "1.0.0",
+  "name": "vngrs-api",
+  "version": "0.0.1",
   "main": "app.js",
   "author": "Doğan Öztürk",
+  "engines": {
+    "node": ">=6.9.4"
+  },
+  "private": true,
   "scripts": {
     "dev": "./node_modules/nodemon/bin/nodemon.js app.js",
     "dist": "npm run index-delete && npm run index && npm run indices && node app.js",
@@ -12,6 +16,7 @@
   },
   "dependencies": {
     "elasticsearch": "13.1.1",
+    "lodash.get": "4.4.2",
     "restify": "4.3.0"
   },
   "devDependencies": {
