@@ -4,7 +4,7 @@
   "main": "app.js",
   "author": "Doğan Öztürk",
   "engines": {
-    "node": ">=6.9.4"
+    "node": ">=6.11.0"
   },
   "private": true,
   "scripts": {
