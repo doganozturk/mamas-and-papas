@@ -13,8 +13,9 @@ const server = restify.createServer({
 // with the following fields added by restify:
 // - a `req_id` UUID (to collate all log records for a particular request)
 // - a `route` (to identify which handler this was routed to)
-server.pre(function (req, res, next) {
+server.pre((req, res, next) => {
   req.log.info({req: req}, 'start');
+
   return next();
 });
 
@@ -28,7 +29,7 @@ server.get("/search/quick", searchCtrl);
 
 // Let's log every response. Except 404s, MethodNotAllowed,
 // VersionNotAllowed -- see restify's events for these.
-server.on('after', function (req, res, route) {
+server.on('after', (req, res, route) => {
   req.log.info({res: res}, "finished");
 });
 

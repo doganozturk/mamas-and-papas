@@ -71,7 +71,7 @@ gulp.task('styles:concat', () => {
     .pipe(gulp.dest('.tmp/css'))
     .pipe($.size({title: 'styles:concat'}))
     .on('end', function () {
-      del(['.tmp/css/*.css', '.tmp/css/*.css.map', '!.tmp/css/styles.css', '!.tmp/css/styles.css.map']);
+      del(['.tmp/css/*.css', '!.tmp/css/styles.css']);
     });
 });
 
@@ -88,7 +88,7 @@ gulp.task('styles:minify', () =>
     '.tmp/css/styles.css',
     'dist/css/styles.css'
   ])
-    .pipe($.cssnano({discardComments: {removeAll: true}}))
+    .pipe($.cssnano({discardComments: {removeAll: true}, zindex: false}))
     .pipe($.rename('styles.min.css'))
     .pipe(gulp.dest('dist/css'))
     .pipe(gulp.dest('.tmp/css'))
@@ -137,10 +137,8 @@ gulp.task('html', () => {
       collapseBooleanAttributes: true,
       removeAttributeQuotes: true,
       removeRedundantAttributes: true,
-      removeEmptyAttributes: true,
       removeScriptTypeAttributes: true,
-      removeStyleLinkTypeAttributes: true,
-      removeOptionalTags: true
+      removeStyleLinkTypeAttributes: true
     })))
     // Output files
     .pipe($.if('*.html', $.size({title: 'html', showFiles: true})))

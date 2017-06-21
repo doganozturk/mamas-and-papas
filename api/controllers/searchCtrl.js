@@ -67,6 +67,8 @@ module.exports = (req, res, next) => {
       log.info(err);
 
       res.writeHead(204, {'Content-Type': 'text/html; charset=utf-8'});
-      res.end('<h1>Data not found!</h1>')
+      res.end('<h1>Data not found!</h1>');
+
+      return next();
     });
 };
