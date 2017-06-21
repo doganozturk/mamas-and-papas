@@ -1,11 +1,12 @@
 // ElasticSearch
 const esClient = require('./client');
+const log = require('../logger');
 
 // Checking indices
 const indices = () => {
   return esClient.cat.indices({v: true})
-    .then(console.log)
-    .catch(err => console.error(`Error connecting to the es client: ${err}`));
+    .then(log.info)
+    .catch(err => log.info(`Error connecting to the es client: ${err}`));
 };
 
 indices();

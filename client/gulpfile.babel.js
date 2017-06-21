@@ -52,12 +52,10 @@ gulp.task('styles:scss', () => {
   ];
 
   return gulp.src('app/scss/**/*.scss')
-    /*.pipe($.sourcemaps.init())*/
     .pipe($.sass({
       precision: 10
     }).on('error', $.sass.logError))
     .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
-    /*.pipe($.sourcemaps.write('./'))*/
     .pipe(gulp.dest('.tmp/css'))
     .pipe($.size({title: 'styles:scss'}));
 });
@@ -118,10 +116,8 @@ gulp.task('scripts:uglify', () =>
     './dist/js/main.js',
     './tmp/js/main.js'
   ])
-    /*.pipe($.sourcemaps.init())*/
     .pipe($.uglify({preserveComments: 'some'}))
     .pipe($.rename('main.min.js'))
-    /*.pipe($.sourcemaps.write('.'))*/
     .pipe(gulp.dest('dist/js'))
     .pipe(gulp.dest('.tmp/js'))
     .pipe($.size({title: 'scripts:uglify'}))
@@ -134,11 +130,6 @@ gulp.task('html', () => {
       'css': 'css/styles.min.css',
       'js': 'js/main.min.js'
     }))
-    .pipe($.useref({
-      searchPath: '{.tmp,app}',
-      noAssets: true
-    }))
-
     // Minify any HTML
     .pipe($.if('*.html', $.htmlmin({
       removeComments: true,

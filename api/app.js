@@ -1,12 +1,21 @@
 const restify = require('restify');
-const search = require('./elasticsearch/search');
-const _ = { get: require('lodash.get') };
-const data = require('./data/products.json');
+const searchCtrl = require('./controllers/searchCtrl');
+const log = require('./logger');
 
 // Server
 const server = restify.createServer({
   name: 'myapp',
-  version: '1.0.0'
+  version: '1.0.0',
+  log
+});
+
+// Let's log every incoming request. `req.log` is a "child" of our logger
+// with the following fields added by restify:
+// - a `req_id` UUID (to collate all log records for a particular request)
+// - a `route` (to identify which handler this was routed to)
+server.pre(function (req, res, next) {
+  req.log.info({req: req}, 'start');
+  return next();
 });
 
 // Middleware
@@ -15,67 +24,15 @@ server.use(restify.acceptParser(server.acceptable));
 server.use(restify.queryParser());
 
 // Search endpoint
-server.get("/search/quick", (req, res, next) => {
-  const keyword = _.get(req, 'query.keyword');
+server.get("/search/quick", searchCtrl);
 
-  let body = {
-    query: {
-      bool: {
-        should: [
-          {
-            term: {
-              isInStock: {
-                boost: 100,
-                value: true
-              }
-            }
-          },
-          {
-            multi_match: {
-              query: keyword,
-              fields: ['sku', 'ediRef'],
-              type: 'phrase'
-            }
-          },
-          {
-            multi_match: {
-              query: keyword,
-              fields: ['name', 'description'],
-              fuzziness: 0.5
-            }
-          }
-        ]
-      }
-    }
-  };
-
-  search('library', body)
-    .then(results => {
-      console.log(`found ${results.hits.total} items in ${results.took}ms`);
-      console.log(`returned product titles:`);
-
-      results.hits.hits.forEach(
-        (hit, index) => console.log(
-          `\t${body.from + ++index} - ${hit._source.name} - ${hit._source.isInStock}`
-        )
-      );
-
-      const response = results.hits.hits.map(item => item._source);
-
-      res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
-      res.end(JSON.stringify(response));
-
-      return next();
-    })
-    .catch(err => {
-      console.error(err);
-
-      res.writeHead(204, {'Content-Type': 'text/html; charset=utf-8'});
-      res.end('<h1>Data not found!</h1>')
-    });
+// Let's log every response. Except 404s, MethodNotAllowed,
+// VersionNotAllowed -- see restify's events for these.
+server.on('after', function (req, res, route) {
+  req.log.info({res: res}, "finished");
 });
 
 // Fire up the server!
 server.listen(3002, () => {
-  console.log('%s listening at %s', server.name, server.url);
+  log.info('%s listening at %s', server.name, server.url);
 });

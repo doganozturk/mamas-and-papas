@@ -15,6 +15,7 @@
     "indices": "node ./elasticsearch/indices.js"
   },
   "dependencies": {
+    "bunyan": "1.8.10",
     "elasticsearch": "13.1.1",
     "lodash.get": "4.4.2",
     "restify": "4.3.0"
