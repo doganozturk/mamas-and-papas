@@ -1,5 +1,5 @@
 {
-  "name": "vngrs-api",
+  "name": "mamas-and-papas-api",
   "version": "0.0.1",
   "main": "app.js",
   "author": "Doğan Öztürk",
@@ -11,7 +11,7 @@
     "dev": "./node_modules/nodemon/bin/nodemon.js app.js",
     "dist": "npm run index-delete && npm run index && npm run indices && node app.js",
     "index": "node ./elasticsearch/index.js",
-    "index-delete": "curl -XDELETE 'http://localhost:9200/_all'",
+    "index-delete": "curl -XDELETE '172.22.0.2:9200/_all'",
     "indices": "node ./elasticsearch/indices.js"
   },
   "dependencies": {

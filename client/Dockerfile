@@ -3,6 +3,5 @@ RUN mkdir -p /srv/mamas-and-papas/client
 COPY . /srv/mamas-and-papas/client/
 WORKDIR /srv/mamas-and-papas/client/
 RUN yarn
-RUN npm run dist
 
 EXPOSE 3001

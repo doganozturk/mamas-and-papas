@@ -3,28 +3,33 @@ services:
   client:
     build: ./client
     image: client-image:v1
+    command: bash -c "npm run dist"
     ports:
-     - '3001:3001'
+      - '3001:3001'
     depends_on:
-     - api
+      - api
     container_name: docker-client
     tty: true
 
   api:
     build: ./api
     image: api-image:v1
+    command: bash -c "/bin/sh ./bin/start.sh"
     ports:
-     - '3002:3002'
+      - '3002:3002'
     depends_on:
-     - elasticsearch-api
+      - elasticsearch-api
     container_name: docker-api
     tty: true
 
   elasticsearch-api:
-    image: elasticsearch
+    image: elasticsearch:5.4.2
+    command: 'elasticsearch'
+    expose:
+      - '9200'
+      - '9300'
     ports:
-      - '80:80'
       - '9200:9200'
+      - '9300:9300'
     container_name: docker-elasticsearch
-    command: bash -c "bash /docker-entrypoint.sh elasticsearch"  
     tty: true
