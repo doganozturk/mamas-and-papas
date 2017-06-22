@@ -20,16 +20,21 @@ To set up a development environment running
 
 #### API
 
-First run Elasticsearch.
+Install the dependencies:
+
+```
+yarn
+```
+Run Elasticsearch.
 
 ```
 elasticsearch
 ```
-then index sample data:
+Then index sample data:
 ```
 npm run index
 ```
-then use below command for running the app with Nodemon:
+Use below command for running the app with Nodemon:
 ```
 npm run dev
 ```
@@ -40,8 +45,12 @@ http://localhost:3002/searh/quick?keyword=blablabla
 
 #### CLIENT
 
-Build sprite, css and js files with Gulp without minification or uglification on dev environment. This command also gives you a simple dev server with auto-reloading (Browser-Sync) going on:
+Install the dependencies:
+```
+yarn
+```
 
+Build sprite, css and js files with Gulp without minification or uglification on dev environment. This command also gives you a simple dev server with auto-reloading (Browser-Sync) going on:
 ```
 npm run dev
 ```
